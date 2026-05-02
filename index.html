@@ -20,17 +20,17 @@
             text-align: center;
             background: #fff;
             
-            /* Initial state: Normal size and visible */
+            /* Explicitly set default state for resets */
             transform: scale(1);
             opacity: 1;
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
         }
 
-        /* --- This Class Triggers the Zoom Out --- */
+        /* --- Exit Animation Class --- */
         body.page-exit {
             transform: scale(2.5);
             opacity: 0;
-            pointer-events: none; /* Prevents double clicking */
+            pointer-events: none;
         }
 
         /* --- Smooth Pastel Gradient --- */
@@ -69,7 +69,7 @@
             to { transform: rotate(15deg) translate(-40px, 40px); }
         }
 
-        /* --- Text Pop-Up --- */
+        /* --- Text Pop-Up Animation --- */
         .content-container {
             animation: textPopUp 1.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             opacity: 0;
@@ -84,7 +84,7 @@
         h1 { font-size: 4.2rem; font-weight: 700; letter-spacing: -2px; margin-bottom: 5px; }
         p { font-size: 1.4rem; color: #444; margin-bottom: 40px; }
 
-        /* --- Button --- */
+        /* --- Button Styling --- */
         .enter-btn {
             display: inline-block;
             padding: 18px 50px;
@@ -112,8 +112,9 @@
 <body>
 
     <div class="gradient-background"></div>
-    <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" class="logo-element logo-1">
-    <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" class="logo-element logo-2">
+    <!-- Tottenham Hotspur Logo Watermarks -->
+    <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" class="logo-element logo-1" alt="">
+    <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" class="logo-element logo-2" alt="">
 
     <div class="content-container">
         <h1>Welcome to discards wiki</h1>
@@ -122,14 +123,25 @@
     </div>
 
     <script>
+        // Trigger the Zoom-Out transition
         function enterWiki() {
-            // Simply add the class to trigger the CSS animation
             document.body.classList.add('page-exit');
             
             setTimeout(() => {
                 window.location.href = "main.html";
             }, 700);
         }
+
+        // RESET LOGIC: Snaps the page back to normal if user hits the 'Back' button
+        window.addEventListener('pageshow', function(event) {
+            // event.persisted checks if page is loaded from cache
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                document.body.classList.remove('page-exit');
+                // Ensure styles reset instantly
+                document.body.style.opacity = "1";
+                document.body.style.transform = "scale(1)";
+            }
+        });
     </script>
 </body>
 </html>
