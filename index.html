@@ -101,7 +101,7 @@
         }
 
         .glass-panel.is-open .dropdown-content {
-            max-height: 800px; 
+            max-height: 1000px; 
             opacity: 1;
             padding-bottom: 30px;
             pointer-events: auto;
@@ -110,6 +110,14 @@
         .glass-panel.is-open .chevron { transform: rotate(180deg); }
 
         .discord-link { color: #5dade2; text-decoration: none; font-weight: 700; }
+
+        .mechanics-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
         /* --- Upgrade Requirements Grid --- */
         .upgrade-grid {
@@ -129,14 +137,6 @@
 
         .tier-item span { font-size: 1.8rem; font-weight: 800; }
         .tier-item small { font-size: 0.7rem; font-weight: 600; opacity: 0.6; display: block; margin-top: 5px; text-transform: uppercase; }
-
-        .mechanics-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 20px;
-            margin-top: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
 
     </style>
 </head>
@@ -164,7 +164,25 @@
             </div>
         </div>
 
-        <!-- Section 2: How do new cards work? -->
+        <!-- Section 2: Rank & Card Variants (New!) -->
+        <div class="glass-panel" onclick="toggleDropdown(this)">
+            <div class="dropdown-header">
+                <h2>Server Rank & Card Types</h2>
+                <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="dropdown-content">
+                <div class="mechanics-box">
+                    <h3 style="margin-top:0; color:#5dade2;">Rank Scaling</h3>
+                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">A player's card profile is not fixed. Depending on your current rank within the server, your cards can feature different **Stats, Positions, and Abilities**.</p>
+                </div>
+                <div class="mechanics-box">
+                    <h3 style="margin-top:0; color:#5dade2;">Dynamic Varieties</h3>
+                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">As you climb the server ranks, you unlock access to higher-tier card variants that offer better performance and unique strategic advantages in the game.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: How do new cards work? -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>How do new cards work?</h2>
@@ -182,7 +200,7 @@
             </div>
         </div>
 
-        <!-- Section 3: Upgrade Requirements (Moved to Bottom) -->
+        <!-- Section 4: Upgrade Requirements -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>Upgrade Requirements</h2>
@@ -215,7 +233,6 @@
 
     <script>
         function toggleDropdown(el) {
-            // Closes other panels when one is opened
             const panels = document.querySelectorAll('.glass-panel');
             panels.forEach(p => {
                 if (p !== el) p.classList.remove('is-open');
