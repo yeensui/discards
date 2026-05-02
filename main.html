@@ -14,7 +14,6 @@
         body {
             margin: 0;
             min-height: 100vh;
-            /* Liquid Gradient Background */
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
             animation: zoomInPage 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -24,11 +23,7 @@
             align-items: center;
         }
 
-        header {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
+        header { padding: 60px 20px; text-align: center; }
         h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; margin: 0; }
         header p { color: #6e6e73; font-size: 1.1rem; margin-top: 8px; }
 
@@ -39,26 +34,26 @@
             box-sizing: border-box;
         }
 
-        /* --- Liquid Glass UI Element --- */
+        /* --- Liquid Glass UI Panel --- */
         .glass-panel {
             background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 28px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
             margin-bottom: 25px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Smooth transition for the container height */
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* --- Smooth Dropdown Menu --- */
+        /* --- Hover Dropdown Logic --- */
         .dropdown-header {
             padding: 24px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
             user-select: none;
         }
 
@@ -67,74 +62,90 @@
         .chevron {
             width: 20px;
             height: 20px;
-            transition: transform 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            stroke: #1d1d1f;
         }
 
         .dropdown-content {
             max-height: 0;
             opacity: 0;
             padding: 0 30px;
+            visibility: hidden;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
         }
 
-        /* Active Dropdown State */
-        .glass-panel.active .dropdown-content {
-            max-height: 400px;
+        /* The Hover Trigger */
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .glass-panel:hover .dropdown-content {
+            max-height: 400px; /* Adjust based on content height */
             opacity: 1;
             padding-bottom: 30px;
-            pointer-events: auto;
+            visibility: visible;
         }
 
-        .glass-panel.active .chevron { transform: rotate(180deg); }
+        .glass-panel:hover .chevron {
+            transform: rotate(180deg);
+        }
 
-        /* --- Step Styling --- */
+        /* --- Content Styling --- */
         .step {
             margin-bottom: 12px;
-            padding: 15px;
+            padding: 18px;
             background: rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
+            border-radius: 18px;
             font-size: 1rem;
             display: flex;
             gap: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.3s ease;
         }
 
+        .step:hover { background: rgba(255, 255, 255, 0.5); }
         .discord-link { color: #0071e3; text-decoration: none; font-weight: 600; }
 
-        /* --- Upgrade Grid --- */
+        /* --- Upgrade Requirements Grid --- */
         .upgrade-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            padding: 20px;
+            padding: 20px 0;
         }
 
         .tier-item {
             background: rgba(255, 255, 255, 0.5);
-            padding: 15px;
-            border-radius: 20px;
+            padding: 20px;
+            border-radius: 22px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
         }
 
-        .tier-val { font-size: 1.8rem; font-weight: 700; display: block; }
-        .tier-name { font-size: 0.75rem; text-transform: uppercase; color: #86868b; font-weight: 600; }
+        .tier-item:hover { transform: scale(1.03); }
+        .tier-val { font-size: 1.8rem; font-weight: 700; display: block; margin-top: 5px; }
+        .tier-name { font-size: 0.75rem; text-transform: uppercase; color: #86868b; font-weight: 600; letter-spacing: 0.5px; }
 
-        /* --- Floating Back Button --- */
         .back-btn {
             position: fixed;
             bottom: 30px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+            padding: 14px 28px;
             border-radius: 50px;
             text-decoration: none;
             color: #1d1d1f;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
         }
+
+        .back-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -146,9 +157,9 @@
 
 <div class="container">
     
-    <!-- Dropdown Section: Access -->
-    <div class="glass-panel" id="accessDropdown">
-        <div class="dropdown-header" onclick="toggleDropdown()">
+    <!-- Hover Dropdown: Access Section -->
+    <div class="glass-panel">
+        <div class="dropdown-header">
             <h2>How to Access Discards</h2>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </div>
@@ -168,9 +179,10 @@
         </div>
     </div>
 
-    <!-- Upgrade Section -->
+    <!-- Upgrade Requirements Section -->
     <div class="glass-panel" style="padding: 24px 30px;">
-        <h2 style="font-size: 1.3rem; margin: 0 0 20px 0;">Upgrade Requirements</h2>
+        <h2 style="font-size: 1.3rem; margin: 0 0 10px 0; font-weight: 600;">Upgrade Requirements</h2>
+        <p style="color: #6e6e73; font-size: 0.95rem; margin-bottom: 20px;">Merging duplicates for higher tiers.</p>
         <div class="upgrade-grid">
             <div class="tier-item">
                 <span class="tier-name">Bronze</span>
@@ -178,7 +190,7 @@
             </div>
             <div class="tier-item">
                 <span class="tier-name">Silver</span>
-                <span class="tier-val" style="color: #a8a8a8;">8</span>
+                <span class="tier-val" style="color: #8e8e93;">8</span>
             </div>
             <div class="tier-item">
                 <span class="tier-name">Gold</span>
@@ -194,13 +206,6 @@
 </div>
 
 <a href="index.html" class="back-btn">← Home</a>
-
-<script>
-    function toggleDropdown() {
-        const panel = document.getElementById('accessDropdown');
-        panel.classList.toggle('active');
-    }
-</script>
 
 </body>
 </html>
