@@ -5,46 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DisCards Wiki - Database</title>
     <style>
-        /* --- Entry Animations --- */
+        /* --- Entry & Background Animations --- */
         @keyframes fadeInPage {
             0% { opacity: 0; transform: translateY(20px); filter: blur(10px); }
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        @keyframes wavyGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes logoFloat {
+            0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.05; }
+            50% { transform: translate(-50%, -52%) scale(1.05) rotate(5deg); opacity: 0.1; }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); opacity: 0.05; }
         }
 
         body {
             margin: 0;
             min-height: 100vh;
-            background: linear-gradient(-45deg, #0b0e1e, #132257, #1a1d2e, #060914);
-            background-size: 400% 400%;
-            animation: fadeInPage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards, wavyGradient 15s ease infinite;
+            /* Official Spurs Colors: White & Navy */
+            background: #ffffff;
+            background: radial-gradient(circle at center, #ffffff 0%, #f0f2f5 100%);
             font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-            color: #ffffff;
+            color: #132257; /* Spurs Navy */
             display: flex;
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            animation: fadeInPage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
+        /* --- Animating Background Logo --- */
         .bg-logo {
             position: fixed;
             top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70vw; max-width: 600px;
-            opacity: 0.07; filter: blur(15px);
-            z-index: -1; pointer-events: none;
+            width: 80vw; max-width: 700px;
+            z-index: -1;
+            pointer-events: none;
+            animation: logoFloat 10s ease-in-out infinite;
         }
 
-        header { padding: 60px 20px 30px; text-align: center; z-index: 1; position: relative; }
+        header { padding: 60px 20px 30px; text-align: center; z-index: 1; }
         
         .beta-badge {
             font-size: 0.65rem;
-            background: #0071e3;
+            background: #132257;
             color: #fff;
             padding: 2px 8px;
             border-radius: 50px;
@@ -52,16 +54,11 @@
             vertical-align: middle;
             margin-left: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -1.5px; margin: 0; }
+        h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -2px; margin: 0; color: #132257; }
 
-        /* --- Blue Text Highlight (Replacing Asterisks) --- */
-        .highlight {
-            color: #5dade2;
-            font-weight: 700;
-        }
+        .highlight { color: #0071e3; font-weight: 700; }
 
         .container {
             width: 100%;
@@ -71,118 +68,70 @@
             z-index: 1;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
-        /* --- Universal Glass Panel --- */
+        /* --- Light Liquid Glass UI --- */
         .glass-panel {
             width: 100%;
-            background: rgba(255, 255, 255, 0.08); 
-            backdrop-filter: blur(35px) saturate(150%);
-            -webkit-backdrop-filter: blur(35px) saturate(150%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(19, 34, 87, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(19, 34, 87, 0.05);
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            box-sizing: border-box;
         }
 
         @media (min-width: 1024px) {
-            .glass-panel:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-4px); }
+            .glass-panel:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.9); box-shadow: 0 15px 40px rgba(19, 34, 87, 0.1); }
         }
 
         .dropdown-header {
-            padding: 24px 30px;
+            padding: 22px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .dropdown-header h2 { font-size: 0.95rem; margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .dropdown-header h2 { font-size: 0.85rem; margin: 0; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #132257; }
         
-        .chevron {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.4s ease;
-            stroke: #fff;
-            fill: none;
-        }
+        .chevron { width: 16px; height: 16px; transition: transform 0.4s ease; stroke: #132257; fill: none; }
 
         .dropdown-content {
-            max-height: 0;
-            opacity: 0;
-            padding: 0 30px;
-            transition: all 0.4s ease-out;
-            pointer-events: none;
-            overflow: hidden;
+            max-height: 0; opacity: 0; padding: 0 28px;
+            transition: all 0.4s ease-out; pointer-events: none;
         }
 
-        .glass-panel.is-open .dropdown-content {
-            max-height: 1200px; 
-            opacity: 1;
-            padding-bottom: 30px;
-            pointer-events: auto;
-        }
-
+        .glass-panel.is-open .dropdown-content { max-height: 1000px; opacity: 1; padding-bottom: 28px; pointer-events: auto; }
         .glass-panel.is-open .chevron { transform: rotate(180deg); }
 
-        .discord-link { color: #5dade2; text-decoration: none; font-weight: 700; border-bottom: 1px solid rgba(93, 173, 226, 0.3); }
-
         .mechanics-box {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 20px;
-            margin-top: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(19, 34, 87, 0.03);
+            padding: 18px; border-radius: 18px; margin-top: 10px;
+            border: 1px solid rgba(19, 34, 87, 0.05);
         }
 
-        /* --- House List Styling with Translucent Colors --- */
-        .house-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
-        }
-        .house-tag {
-            padding: 15px;
-            border-radius: 18px;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 700;
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
-            transition: transform 0.3s ease;
-        }
-        .house-tag:hover { transform: scale(1.05); }
+        /* --- House Tags --- */
+        .house-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; margin-top: 15px; }
+        .house-tag { padding: 12px; border-radius: 14px; text-align: center; font-size: 0.85rem; font-weight: 700; border: 1px solid rgba(0,0,0,0.05); }
 
-        .h-hotspur { background: rgba(46, 204, 113, 0.2); color: #2ecc71; border-color: rgba(46, 204, 113, 0.3); }
-        .h-1882 { background: rgba(241, 196, 15, 0.2); color: #f1c40f; border-color: rgba(241, 196, 15, 0.3); }
-        .h-sisters { background: rgba(155, 89, 182, 0.2); color: #9b59b6; border-color: rgba(155, 89, 182, 0.3); }
-        .h-whitehot { background: rgba(212, 175, 55, 0.2); color: #d4af37; border-color: rgba(212, 175, 55, 0.3); }
-        .h-lions { background: rgba(19, 34, 87, 0.5); color: #5dade2; border-color: rgba(93, 173, 226, 0.4); }
-        .h-castle { background: rgba(230, 126, 34, 0.2); color: #e67e22; border-color: rgba(230, 126, 34, 0.3); }
+        .h-hotspur { background: #e8fcf0; color: #2ecc71; }
+        .h-1882 { background: #fef9e7; color: #f1c40f; }
+        .h-sisters { background: #f5eef8; color: #9b59b6; }
+        .h-whitehot { background: #fdf5e6; color: #d4af37; }
+        .h-lions { background: #ebf5fb; color: #132257; }
+        .h-castle { background: #fdf2e9; color: #e67e22; }
 
-        /* --- Upgrade Requirements Grid --- */
-        .upgrade-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
-        }
+        /* --- Upgrade Grid --- */
+        .upgrade-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-top: 15px; }
+        .tier-item { background: #fff; padding: 15px; border-radius: 18px; text-align: center; border: 1px solid rgba(19, 34, 87, 0.08); }
+        .tier-item span { font-size: 1.6rem; font-weight: 800; display: block; }
+        .tier-item small { font-size: 0.65rem; font-weight: 700; color: #132257; opacity: 0.5; text-transform: uppercase; }
 
-        .tier-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .tier-item span { font-size: 1.8rem; font-weight: 800; }
-        .tier-item small { font-size: 0.7rem; font-weight: 600; opacity: 0.6; display: block; margin-top: 5px; text-transform: uppercase; }
-
+        .discord-link { color: #0071e3; text-decoration: none; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -195,45 +144,58 @@
 
     <div class="container">
         
-        <!-- Section: How to Access -->
+        <!-- Leaderboards Section -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
-                <h2>How to Access</h2>
-                <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <h2>Global Leaderboards</h2>
+                <svg class="chevron" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="dropdown-content">
+                <div class="mechanics-box">
+                    <p>Track your global standing against the entire server. You can view your specific rank for:</p>
+                    <ul style="padding-left: 20px; line-height: 1.8;">
+                        <li>Total <span class="highlight">Goals Scored</span></li>
+                        <li>Defensive <span class="highlight">Clean Sheets</span></li>
+                        <li>Total <span class="highlight">Cup & League Wins</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Access -->
+        <div class="glass-panel" onclick="toggleDropdown(this)">
+            <div class="dropdown-header">
+                <h2>Accessing the Game</h2>
+                <svg class="chevron" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="dropdown-content">
                 <p>1. Join the <a href="https://discord.gg/spurs" target="_blank" class="discord-link">Spurs Discord Server</a>.</p>
-                <p>2. Open the <span class="highlight">Activities</span> tab in any voice channel.</p>
-                <p>3. Search for and launch <span class="highlight">DisCards</span>.</p>
+                <p>2. Navigate to the <span class="highlight">Activities</span> section in any VC.</p>
+                <p>3. Launch <span class="highlight">DisCards</span> and start your career.</p>
             </div>
         </div>
 
-        <!-- Section: The Binder System -->
+        <!-- The Binder System -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
-                <h2>The Binder System</h2>
-                <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <h2>The Binder Hub</h2>
+                <svg class="chevron" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="dropdown-content">
                 <div class="mechanics-box">
-                    <h3 style="margin-top:0; color:#5dade2;">Your Collection Hub</h3>
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">The <span class="highlight">Binder</span> is where all your collected cards are stored. It acts as your personal inventory, allowing you to view your progress, check card stats, and manage your full roster.</p>
-                </div>
-                <div class="mechanics-box">
-                    <h3 style="margin-top:0; color:#5dade2;">Manage Upgrades</h3>
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">You can access the <span class="highlight">Upgrade System</span> directly from the Binder. If you have enough duplicates, you can merge them here to elevate your cards to the next tier.</p>
+                    <p>The <span class="highlight">Binder</span> is your primary collection screen. Here you can view stats, manage your lineup, and initiate <span class="highlight">Card Upgrades</span> once you possess enough duplicates.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Section: The 6 Houses -->
+        <!-- The 6 Houses -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
-                <h2>The 6 Houses</h2>
-                <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <h2>House Dynamics</h2>
+                <svg class="chevron" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="dropdown-content">
-                <p>Cards are divided into six distinct houses. Collecting players from the <span class="highlight">same house</span> is key to winning games.</p>
+                <p>Build your squad around these six specific <span class="highlight">House Links</span> for maximum chemistry:</p>
                 <div class="house-grid">
                     <div class="house-tag h-hotspur">Hotspur</div>
                     <div class="house-tag h-sisters">Sisters</div>
@@ -245,57 +207,18 @@
             </div>
         </div>
 
-        <!-- Section: Chemistry & Performance -->
+        <!-- Upgrade Requirements -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
-                <h2>Chemistry & Performance</h2>
-                <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-            <div class="dropdown-content">
-                <div class="mechanics-box">
-                    <h3 style="margin-top:0; color:#5dade2;">The Chemistry Advantage</h3>
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Rating isn't everything. A lower-rated team with <span class="highlight">high chemistry</span> (matching houses and positions) has a strong chance to outperform a higher-rated team made of random players.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Server Rank & Card Types -->
-        <div class="glass-panel" onclick="toggleDropdown(this)">
-            <div class="dropdown-header">
-                <h2>Server Rank & Card Types</h2>
-                <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </div>
-            <div class="dropdown-content">
-                <div class="mechanics-box">
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Depending on your current <span class="highlight">rank</span> within the server, your cards can feature different stats, positions, and abilities.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Upgrade Requirements -->
-        <div class="glass-panel" onclick="toggleDropdown(this)">
-            <div class="dropdown-header">
-                <h2>Upgrade Requirements</h2>
-                <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <h2>Upgrade Costs</h2>
+                <svg class="chevron" viewBox="0 0 24 24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="dropdown-content">
                 <div class="upgrade-grid">
-                    <div class="tier-item">
-                        <span style="color: #cd7f32;">5</span>
-                        <small>Lilywhites to Bronze</small>
-                    </div>
-                    <div class="tier-item">
-                        <span style="color: #d1d1d1;">8</span>
-                        <small>Bronze to Silver</small>
-                    </div>
-                    <div class="tier-item">
-                        <span style="color: #d4af37;">12</span>
-                        <small>Silver to Gold</small>
-                    </div>
-                    <div class="tier-item">
-                        <span style="color: #5dade2;">15</span>
-                        <small>Gold to Diamond</small>
-                    </div>
+                    <div class="tier-item"><span style="color: #cd7f32;">5</span><small>Lily → Bronze</small></div>
+                    <div class="tier-item"><span style="color: #95a5a6;">8</span><small>Bronze → Silver</small></div>
+                    <div class="tier-item"><span style="color: #d4af37;">12</span><small>Silver → Gold</small></div>
+                    <div class="tier-item"><span style="color: #0071e3;">15</span><small>Gold → Diamond</small></div>
                 </div>
             </div>
         </div>
@@ -305,9 +228,7 @@
     <script>
         function toggleDropdown(el) {
             const panels = document.querySelectorAll('.glass-panel');
-            panels.forEach(p => {
-                if (p !== el) p.classList.remove('is-open');
-            });
+            panels.forEach(p => { if (p !== el) p.classList.remove('is-open'); });
             el.classList.toggle('is-open');
         }
     </script>
