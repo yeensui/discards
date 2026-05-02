@@ -102,7 +102,7 @@
             transform: scale(0.98);
         }
 
-        .glass-panel.is-open .dropdown-content { max-height: 1500px; opacity: 1; padding-bottom: 30px; pointer-events: auto; filter: blur(0); transform: scale(1); }
+        .glass-panel.is-open .dropdown-content { max-height: 1800px; opacity: 1; padding-bottom: 30px; pointer-events: auto; filter: blur(0); transform: scale(1); }
         .glass-panel.is-open .chevron { transform: rotate(180deg); opacity: 1; }
 
         .mechanics-box {
@@ -112,7 +112,7 @@
             line-height: 1.6;
         }
 
-        /* --- Image Styling --- */
+        /* --- HD Image Styling --- */
         .tab-image {
             width: 100%;
             height: auto;
@@ -121,6 +121,8 @@
             border: 1px solid rgba(19, 34, 87, 0.1);
             box-shadow: 0 10px 25px rgba(19, 34, 87, 0.05);
             display: block;
+            image-rendering: -webkit-optimize-contrast; /* Keeps image sharp */
+            object-fit: contain;
         }
 
         .house-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 12px; margin-top: 15px; }
