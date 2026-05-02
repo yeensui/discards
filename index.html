@@ -11,7 +11,6 @@
             100% { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* --- Wavy Blur Gradient Animation --- */
         @keyframes wavyGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -23,9 +22,7 @@
             min-height: 100vh;
             background: linear-gradient(-45deg, #0b0e1e, #132257, #1a1d2e, #060914);
             background-size: 400% 400%;
-            animation: 
-                fadeInPage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                wavyGradient 15s ease infinite;
+            animation: fadeInPage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards, wavyGradient 15s ease infinite;
             font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
             color: #ffffff;
             display: flex;
@@ -34,35 +31,28 @@
             overflow-x: hidden;
         }
 
-        /* --- Blurred Background Logo --- */
         .bg-logo {
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 70vw;
-            max-width: 600px;
-            opacity: 0.07; /* Very subtle */
-            filter: blur(15px);
-            z-index: -1;
-            pointer-events: none;
-            user-select: none;
+            width: 70vw; max-width: 600px;
+            opacity: 0.07; filter: blur(15px);
+            z-index: -1; pointer-events: none;
         }
 
-        header { padding: 80px 20px 40px; text-align: center; position: relative; z-index: 1; }
-        h1 { font-size: 3rem; font-weight: 700; letter-spacing: -1.5px; margin: 0; }
-        header p { color: rgba(255, 255, 255, 0.6); font-size: 1.2rem; margin-top: 10px; }
+        header { padding: 60px 20px 30px; text-align: center; z-index: 1; }
+        h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -1.5px; margin: 0; }
+        header p { color: rgba(255, 255, 255, 0.6); font-size: 1.1rem; margin-top: 10px; }
 
         .container {
             width: 100%;
             max-width: 850px;
             padding: 0 20px 100px;
             box-sizing: border-box;
-            position: relative;
             z-index: 1;
         }
 
-        /* --- Dark Liquid Glass UI Panel --- */
+        /* --- Glass Panel (Mobile Click Fix) --- */
         .glass-panel {
             background: rgba(255, 255, 255, 0.08); 
             backdrop-filter: blur(35px) saturate(150%);
@@ -70,152 +60,130 @@
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 30px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
-        .glass-panel:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateY(-4px);
+        /* Desktop Hover works alongside Click */
+        @media (min-width: 1024px) {
+            .glass-panel:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-4px); }
         }
 
-        /* --- Hover Dropdown Logic --- */
         .dropdown-header {
-            padding: 26px 35px;
+            padding: 24px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            user-select: none;
         }
 
-        .dropdown-header h2 { font-size: 1.4rem; margin: 0; font-weight: 600; color: #fff; }
+        .dropdown-header h2 { font-size: 1.3rem; margin: 0; font-weight: 600; }
         
         .chevron {
-            width: 22px;
-            height: 22px;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            stroke: #ffffff;
-            opacity: 0.8;
+            width: 20px;
+            height: 20px;
+            transition: transform 0.4s ease;
+            stroke: #fff;
         }
 
         .dropdown-content {
             max-height: 0;
             opacity: 0;
-            padding: 0 35px;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 30px;
+            transition: all 0.4s ease-out;
+            pointer-events: none;
         }
 
-        .glass-panel:hover .dropdown-content {
-            max-height: 450px;
+        /* This class is toggled by JS */
+        .glass-panel.is-open .dropdown-content {
+            max-height: 500px;
             opacity: 1;
-            padding-bottom: 35px;
-            visibility: visible;
+            padding-bottom: 30px;
+            pointer-events: auto;
         }
 
-        .glass-panel:hover .chevron { transform: rotate(180deg); opacity: 1; }
+        .glass-panel.is-open .chevron { transform: rotate(180deg); }
 
-        /* --- Step Styling --- */
-        .step {
-            margin-bottom: 14px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            font-size: 1.05rem;
-            display: flex;
-            gap: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* --- Buttons --- */
+        .action-btn {
+            display: block;
+            width: 100%;
+            padding: 22px;
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
 
-        .step:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.15); }
-        .discord-link { color: #5dade2; text-decoration: none; font-weight: 700; }
-        .discord-link:hover { text-decoration: underline; }
-
-        /* --- Upgrade Requirements Grid --- */
-        .upgrade-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 18px;
-            padding: 20px 0;
-        }
+        .action-btn:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.02); }
 
         .tier-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 24px;
+            padding: 20px;
+            border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .tier-item:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.1); }
-        .tier-val { font-size: 2.2rem; font-weight: 800; display: block; margin-top: 5px; }
-        .tier-name { font-size: 0.8rem; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); font-weight: 700; letter-spacing: 1px; }
-
+        .upgrade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Blurred Background Spurs Logo -->
-    <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" class="bg-logo" alt="Tottenham Hotspur">
+    <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" class="bg-logo">
 
     <header>
         <h1>Discards Wiki</h1>
-        <p>Database & Collection Guide</p>
+        <p>Official Database</p>
     </header>
 
     <div class="container">
         
-        <!-- Access Section -->
-        <div class="glass-panel">
+        <!-- Access Dropdown -->
+        <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
-                <h2>How to Access Discards</h2>
-                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <h2>How to Access</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="dropdown-content">
-                <div class="step">
-                    <span style="color: #5dade2; font-weight: 800;">1</span>
-                    <span>Join the <a href="https://discord.gg/spurs" target="_blank" class="discord-link">Spurs Discord</a></span>
-                </div>
-                <div class="step">
-                    <span style="color: #5dade2; font-weight: 800;">2</span>
-                    <span>Open **Discord Activities**</span>
-                </div>
-                <div class="step">
-                    <span style="color: #5dade2; font-weight: 800;">3</span>
-                    <span>Launch **Discoys Discards**</span>
-                </div>
+                <p>1. Join the Spurs Discord.</p>
+                <p>2. Open Activities tab.</p>
+                <p>3. Launch Discoys Discards.</p>
             </div>
         </div>
 
         <!-- Upgrade Section -->
-        <div class="glass-panel" style="padding: 30px 35px;">
-            <h2 style="font-size: 1.4rem; margin: 0 0 8px 0; font-weight: 600;">Upgrade Requirements</h2>
-            <p style="color: rgba(255, 255, 255, 0.5); font-size: 1rem; margin-bottom: 25px;">Consolidate your collection for higher rarity tiers.</p>
+        <div class="glass-panel" style="padding: 24px 30px; cursor: default;">
+            <h2 style="margin:0; font-size: 1.3rem;">Upgrade Tiers</h2>
             <div class="upgrade-grid">
-                <div class="tier-item">
-                    <span class="tier-name">Bronze</span>
-                    <span class="tier-val" style="color: #cd7f32;">5</span>
-                </div>
-                <div class="tier-item">
-                    <span class="tier-name">Silver</span>
-                    <span class="tier-val" style="color: #d1d1d1;">8</span>
-                </div>
-                <div class="tier-item">
-                    <span class="tier-name">Gold</span>
-                    <span class="tier-val" style="color: #d4af37;">12</span>
-                </div>
-                <div class="tier-item">
-                    <span class="tier-name">Diamond</span>
-                    <span class="tier-val" style="color: #5dade2;">15</span>
-                </div>
+                <div class="tier-item"><span style="color: #cd7f32;">5</span><br><small>BRONZE</small></div>
+                <div class="tier-item"><span style="color: #d1d1d1;">8</span><br><small>SILVER</small></div>
+                <div class="tier-item"><span style="color: #d4af37;">12</span><br><small>GOLD</small></div>
+                <div class="tier-item"><span style="color: #5dade2;">15</span><br><small>DIAMOND</small></div>
             </div>
         </div>
 
+        <!-- New Mechanics Page Button -->
+        <a href="mechanics.html" class="action-btn">How do new Discards cards work? →</a>
+
     </div>
 
+    <script>
+        function toggleDropdown(el) {
+            el.classList.toggle('is-open');
+        }
+    </script>
 </body>
 </html>
