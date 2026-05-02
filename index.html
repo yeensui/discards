@@ -44,7 +44,7 @@
         
         .beta-badge {
             font-size: 0.65rem;
-            background: #5dade2;
+            background: #0071e3;
             color: #fff;
             padding: 2px 8px;
             border-radius: 50px;
@@ -56,6 +56,12 @@
         }
 
         h1 { font-size: 2.8rem; font-weight: 700; letter-spacing: -1.5px; margin: 0; }
+
+        /* --- Blue Text Highlight (Replacing Asterisks) --- */
+        .highlight {
+            color: #5dade2;
+            font-weight: 700;
+        }
 
         .container {
             width: 100%;
@@ -94,7 +100,7 @@
             align-items: center;
         }
 
-        .dropdown-header h2 { font-size: 1rem; margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .dropdown-header h2 { font-size: 0.95rem; margin: 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         
         .chevron {
             width: 18px;
@@ -122,7 +128,7 @@
 
         .glass-panel.is-open .chevron { transform: rotate(180deg); }
 
-        .discord-link { color: #5dade2; text-decoration: none; font-weight: 700; }
+        .discord-link { color: #5dade2; text-decoration: none; font-weight: 700; border-bottom: 1px solid rgba(93, 173, 226, 0.3); }
 
         .mechanics-box {
             background: rgba(255, 255, 255, 0.05);
@@ -132,22 +138,31 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* --- House List Styling --- */
+        /* --- House List Styling with Translucent Colors --- */
         .house-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
             margin-top: 15px;
         }
         .house-tag {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 18px;
             text-align: center;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
             border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
         }
+        .house-tag:hover { transform: scale(1.05); }
+
+        .h-hotspur { background: rgba(46, 204, 113, 0.2); color: #2ecc71; border-color: rgba(46, 204, 113, 0.3); }
+        .h-1882 { background: rgba(241, 196, 15, 0.2); color: #f1c40f; border-color: rgba(241, 196, 15, 0.3); }
+        .h-sisters { background: rgba(155, 89, 182, 0.2); color: #9b59b6; border-color: rgba(155, 89, 182, 0.3); }
+        .h-whitehot { background: rgba(212, 175, 55, 0.2); color: #d4af37; border-color: rgba(212, 175, 55, 0.3); }
+        .h-lions { background: rgba(19, 34, 87, 0.5); color: #5dade2; border-color: rgba(93, 173, 226, 0.4); }
+        .h-castle { background: rgba(230, 126, 34, 0.2); color: #e67e22; border-color: rgba(230, 126, 34, 0.3); }
 
         /* --- Upgrade Requirements Grid --- */
         .upgrade-grid {
@@ -180,7 +195,7 @@
 
     <div class="container">
         
-        <!-- Section 1: How to Access -->
+        <!-- Section: How to Access -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>How to Access</h2>
@@ -188,12 +203,12 @@
             </div>
             <div class="dropdown-content">
                 <p>1. Join the <a href="https://discord.gg/spurs" target="_blank" class="discord-link">Spurs Discord Server</a>.</p>
-                <p>2. Open the **Activities** tab in any voice channel.</p>
-                <p>3. Search for and launch **DisCards**.</p>
+                <p>2. Open the <span class="highlight">Activities</span> tab in any voice channel.</p>
+                <p>3. Search for and launch <span class="highlight">DisCards</span>.</p>
             </div>
         </div>
 
-        <!-- Section 2: The Binder System -->
+        <!-- Section: The Binder System -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>The Binder System</h2>
@@ -202,35 +217,35 @@
             <div class="dropdown-content">
                 <div class="mechanics-box">
                     <h3 style="margin-top:0; color:#5dade2;">Your Collection Hub</h3>
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">The **Binder** is where all your collected cards are stored. It acts as your personal inventory, allowing you to view your progress, check card stats, and manage your full roster.</p>
+                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">The <span class="highlight">Binder</span> is where all your collected cards are stored. It acts as your personal inventory, allowing you to view your progress, check card stats, and manage your full roster.</p>
                 </div>
                 <div class="mechanics-box">
                     <h3 style="margin-top:0; color:#5dade2;">Manage Upgrades</h3>
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">You can access the **Upgrade System** directly from the Binder. If you have enough duplicates, you can merge them here to elevate your cards to the next tier.</p>
+                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">You can access the <span class="highlight">Upgrade System</span> directly from the Binder. If you have enough duplicates, you can merge them here to elevate your cards to the next tier.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Section 3: The 6 Houses -->
+        <!-- Section: The 6 Houses -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>The 6 Houses</h2>
                 <svg class="chevron" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
             <div class="dropdown-content">
-                <p>Cards are divided into six distinct houses. Collecting players from the same house is key to winning games.</p>
+                <p>Cards are divided into six distinct houses. Collecting players from the <span class="highlight">same house</span> is key to winning games.</p>
                 <div class="house-grid">
-                    <div class="house-tag">Hotspur</div>
-                    <div class="house-tag">Sisters</div>
-                    <div class="house-tag">Castle</div>
-                    <div class="house-tag">Lion</div>
-                    <div class="house-tag">White-Hot</div>
-                    <div class="house-tag">1882</div>
+                    <div class="house-tag h-hotspur">Hotspur</div>
+                    <div class="house-tag h-sisters">Sisters</div>
+                    <div class="house-tag h-castle">Castle</div>
+                    <div class="house-tag h-lions">Lion</div>
+                    <div class="house-tag h-whitehot">White-Hot</div>
+                    <div class="house-tag h-1882">1882</div>
                 </div>
             </div>
         </div>
 
-        <!-- Section 4: Chemistry & Performance -->
+        <!-- Section: Chemistry & Performance -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>Chemistry & Performance</h2>
@@ -239,12 +254,12 @@
             <div class="dropdown-content">
                 <div class="mechanics-box">
                     <h3 style="margin-top:0; color:#5dade2;">The Chemistry Advantage</h3>
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Rating isn't everything. A lower-rated team with **high chemistry** (matching houses and positions) has a strong chance to outperform a higher-rated team made of random players.</p>
+                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Rating isn't everything. A lower-rated team with <span class="highlight">high chemistry</span> (matching houses and positions) has a strong chance to outperform a higher-rated team made of random players.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Section 5: Server Rank & Card Types -->
+        <!-- Section: Server Rank & Card Types -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>Server Rank & Card Types</h2>
@@ -252,12 +267,12 @@
             </div>
             <div class="dropdown-content">
                 <div class="mechanics-box">
-                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Depending on your current rank within the server, your cards can feature different **Stats, Positions, and Abilities**.</p>
+                    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.8);">Depending on your current <span class="highlight">rank</span> within the server, your cards can feature different stats, positions, and abilities.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Section 6: Upgrade Requirements -->
+        <!-- Section: Upgrade Requirements -->
         <div class="glass-panel" onclick="toggleDropdown(this)">
             <div class="dropdown-header">
                 <h2>Upgrade Requirements</h2>
