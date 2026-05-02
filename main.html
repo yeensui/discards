@@ -62,6 +62,21 @@
 
         .step-number { font-weight: 800; margin-right: 15px; color: #a8e6cf; }
 
+        /* --- Discord Link Styling --- */
+        .discord-link {
+            color: #a8e6cf;
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px dashed #a8e6cf;
+            transition: all 0.3s ease;
+        }
+
+        .discord-link:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+            background: rgba(168, 230, 207, 0.1);
+        }
+
         /* --- Upgrade Mechanics Section --- */
         .upgrade-section {
             background: white;
@@ -70,7 +85,7 @@
             border: 1px solid #eaeaea;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             margin-bottom: 40px;
-            border-left: 6px solid #132257; /* Spurs Navy Accent */
+            border-left: 6px solid #132257; 
         }
 
         .badge {
@@ -106,7 +121,6 @@
         .tier-count { font-size: 2.4rem; font-weight: 800; margin: 8px 0; }
         .tier-subtext { font-size: 0.8rem; color: #999; margin: 0; }
 
-        /* --- Floating Back Button --- */
         .back-home {
             position: fixed;
             bottom: 30px;
@@ -142,9 +156,18 @@
         <p style="opacity: 0.7;">Join the community and start collecting in seconds.</p>
         
         <div class="step-list">
-            <div class="step"><span class="step-number">01</span><span>Go to **Discord**</span></div>
-            <div class="step"><span class="step-number">02</span><span>Open the **Discord Activities** tab</span></div>
-            <div class="step"><span class="step-number">03</span><span>Join **Discoys Discards** and start your journey.</span></div>
+            <div class="step">
+                <span class="step-number">01</span>
+                <span>Join the <a href="https://discord.gg/spurs" target="_blank" class="discord-link">Tottenham Hotspur FC Discord</a></span>
+            </div>
+            <div class="step">
+                <span class="step-number">02</span>
+                <span>Open the **Discord Activities** tab</span>
+            </div>
+            <div class="step">
+                <span class="step-number">03</span>
+                <span>Join **Discoys Discards** and start your journey.</span>
+            </div>
         </div>
     </div>
 
@@ -155,28 +178,21 @@
         <p style="color: #666; margin-top: 5px;">Requirements to reach the next rarity tier.</p>
 
         <div class="upgrade-grid">
-            <!-- Bronze -->
             <div class="tier-card">
                 <div class="tier-label">Lilywhite → Bronze</div>
                 <div class="tier-count" style="color: #cd7f32;">5</div>
                 <p class="tier-subtext">Cards Needed</p>
             </div>
-
-            <!-- Silver -->
             <div class="tier-card">
                 <div class="tier-label">Bronze → Silver</div>
                 <div class="tier-count" style="color: #a8a8a8;">8</div>
                 <p class="tier-subtext">Cards Needed</p>
             </div>
-
-            <!-- Gold -->
             <div class="tier-card">
                 <div class="tier-label">Silver → Gold</div>
                 <div class="tier-count" style="color: #d4af37;">12</div>
                 <p class="tier-subtext">Cards Needed</p>
             </div>
-
-            <!-- Diamond -->
             <div class="tier-card">
                 <div class="tier-label">Gold → Diamond</div>
                 <div class="tier-count" style="color: #70d6ff;">15</div>
