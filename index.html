@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,6 @@
         body {
             margin: 0;
             min-height: 100vh;
-            /* Spurs Dark Navy Wavy Gradient */
             background: linear-gradient(-45deg, #0b0e1e, #132257, #1a1d2e, #060914);
             background-size: 400% 400%;
             animation: 
@@ -33,9 +31,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden;
         }
 
-        header { padding: 80px 20px 40px; text-align: center; }
+        /* --- Blurred Background Logo --- */
+        .bg-logo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            max-width: 600px;
+            opacity: 0.07; /* Very subtle */
+            filter: blur(15px);
+            z-index: -1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        header { padding: 80px 20px 40px; text-align: center; position: relative; z-index: 1; }
         h1 { font-size: 3rem; font-weight: 700; letter-spacing: -1.5px; margin: 0; }
         header p { color: rgba(255, 255, 255, 0.6); font-size: 1.2rem; margin-top: 10px; }
 
@@ -44,6 +58,8 @@
             max-width: 850px;
             padding: 0 20px 100px;
             box-sizing: border-box;
+            position: relative;
+            z-index: 1;
         }
 
         /* --- Dark Liquid Glass UI Panel --- */
@@ -143,60 +159,63 @@
 </head>
 <body>
 
-<header>
-    <h1>Discards Wiki</h1>
-    <p>Database & Collection Guide</p>
-</header>
+    <!-- Blurred Background Spurs Logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg" class="bg-logo" alt="Tottenham Hotspur">
 
-<div class="container">
-    
-    <!-- Hover Dropdown: Access Section -->
-    <div class="glass-panel">
-        <div class="dropdown-header">
-            <h2>How to Access Discards</h2>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    <header>
+        <h1>Discards Wiki</h1>
+        <p>Database & Collection Guide</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- Access Section -->
+        <div class="glass-panel">
+            <div class="dropdown-header">
+                <h2>How to Access Discards</h2>
+                <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+            <div class="dropdown-content">
+                <div class="step">
+                    <span style="color: #5dade2; font-weight: 800;">1</span>
+                    <span>Join the <a href="https://discord.gg/spurs" target="_blank" class="discord-link">Spurs Discord</a></span>
+                </div>
+                <div class="step">
+                    <span style="color: #5dade2; font-weight: 800;">2</span>
+                    <span>Open **Discord Activities**</span>
+                </div>
+                <div class="step">
+                    <span style="color: #5dade2; font-weight: 800;">3</span>
+                    <span>Launch **Discoys Discards**</span>
+                </div>
+            </div>
         </div>
-        <div class="dropdown-content">
-            <div class="step">
-                <span style="color: #5dade2; font-weight: 800;">1</span>
-                <span>Join the <a href="https://discord.gg/spurs" target="_blank" class="discord-link">Spurs Discord</a></span>
-            </div>
-            <div class="step">
-                <span style="color: #5dade2; font-weight: 800;">2</span>
-                <span>Open **Discord Activities**</span>
-            </div>
-            <div class="step">
-                <span style="color: #5dade2; font-weight: 800;">3</span>
-                <span>Launch **Discoys Discards**</span>
+
+        <!-- Upgrade Section -->
+        <div class="glass-panel" style="padding: 30px 35px;">
+            <h2 style="font-size: 1.4rem; margin: 0 0 8px 0; font-weight: 600;">Upgrade Requirements</h2>
+            <p style="color: rgba(255, 255, 255, 0.5); font-size: 1rem; margin-bottom: 25px;">Consolidate your collection for higher rarity tiers.</p>
+            <div class="upgrade-grid">
+                <div class="tier-item">
+                    <span class="tier-name">Bronze</span>
+                    <span class="tier-val" style="color: #cd7f32;">5</span>
+                </div>
+                <div class="tier-item">
+                    <span class="tier-name">Silver</span>
+                    <span class="tier-val" style="color: #d1d1d1;">8</span>
+                </div>
+                <div class="tier-item">
+                    <span class="tier-name">Gold</span>
+                    <span class="tier-val" style="color: #d4af37;">12</span>
+                </div>
+                <div class="tier-item">
+                    <span class="tier-name">Diamond</span>
+                    <span class="tier-val" style="color: #5dade2;">15</span>
+                </div>
             </div>
         </div>
+
     </div>
-
-    <!-- Upgrade Requirements Section -->
-    <div class="glass-panel" style="padding: 30px 35px;">
-        <h2 style="font-size: 1.4rem; margin: 0 0 8px 0; font-weight: 600;">Upgrade Requirements</h2>
-        <p style="color: rgba(255, 255, 255, 0.5); font-size: 1rem; margin-bottom: 25px;">Consolidate your collection for higher rarity tiers.</p>
-        <div class="upgrade-grid">
-            <div class="tier-item">
-                <span class="tier-name">Bronze</span>
-                <span class="tier-val" style="color: #cd7f32;">5</span>
-            </div>
-            <div class="tier-item">
-                <span class="tier-name">Silver</span>
-                <span class="tier-val" style="color: #d1d1d1;">8</span>
-            </div>
-            <div class="tier-item">
-                <span class="tier-name">Gold</span>
-                <span class="tier-val" style="color: #d4af37;">12</span>
-            </div>
-            <div class="tier-item">
-                <span class="tier-name">Diamond</span>
-                <span class="tier-val" style="color: #5dade2;">15</span>
-            </div>
-        </div>
-    </div>
-
-</div>
 
 </body>
 </html>
